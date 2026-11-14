@@ -11,14 +11,14 @@ Objective: Optimize a multi-variable reaction for high-throughput experimentatio
 * **Variables and levels:** `VolTestFDOPA.csv` defines each variable levels. This is the only file you need to edit to design a new study.
 * **Experimental design:** `DOE_table.csv` is generated automatically from the file above.
 * **Experimental results:** After running the experiments, the measured response is added to the design table and used to fit the model.
-* **Sample data:** `DOE_table-2.csv` is a **placeholder file with simulated responses**, included so the modeling and plotting steps can be run before real data exists. Results from this file are for demonstration only.
+* **Sample data:** `DOE_table-2.csv` is a placeholder file with simulated responses, included so the modeling and plotting steps can be run before real data exists. Results from this file are for demonstration only.
 
-| Variable | Code | Description | Range |
+| Variable | Code | Unit | Range |
 | :--- | :---: | :--- | :---: |
-| Precursor loading | `Pre` | $\mu L$ | [low – high] |
-| Copper loading | `Cu` | $\mu L$ | [low – high] |
-| n-Butanol | `Bu` | $\mu L$  | [low – high] |
-| Pyridine loading | `Pyr` | $\mu L$  | [low – high] |
+| Precursor loading | `Pre` | $\mu L$ | 0.5 - 5.0 |
+| Copper loading | `Cu` | $\mu L$ | 1.0 - 20.0 |
+| n-Butanol | `Bu` | $\mu L$  | 0.0 - 50.0 |
+| Pyridine loading | `Pyr` | $\mu L$  | 1.0 - 25.5 |
 
 **Response:** `RCC` (radiochemical conversion, %)
 
@@ -73,7 +73,7 @@ y = β₀ + Σ βᵢxᵢ + Σ βᵢᵢxᵢ² + Σ βᵢⱼxᵢxⱼ + ε
    ```
 3. Install any required libraries:
    ```bash
-   pip install doepy pandas numpy statsmodels scikit-learn matplotlib jupyter
+   pip install doepy pandas numpy statsmodels scikit-learn matplotlib jupyter pyDOE2 diversipy
    ```
 4. Enter your variables and their low/high levels in `VolTestFDOPA.csv`.
 5. Launch the Jupyter Notebook environment:
