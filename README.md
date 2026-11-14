@@ -15,10 +15,10 @@ Objective: Optimize a multi-variable reaction for high-throughput experimentatio
 
 | Variable | Code | Description | Range |
 | :--- | :---: | :--- | :---: |
-| Precursor loading | `Pre` | $\muL$ | [low – high] |
-| Copper loading | `Cu` | [units] | [low – high] |
-| n-Butanol | `Bu` | % of solvent | [low – high] |
-| Pyridine loading | `Pyr` | [units] | [low – high] |
+| Precursor loading | `Pre` | $\mu L$ | [low – high] |
+| Copper loading | `Cu` | $\mu L$ | [low – high] |
+| n-Butanol | `Bu` | $\mu L$  | [low – high] |
+| Pyridine loading | `Pyr` | $\mu L$  | [low – high] |
 
 **Response:** `RCC` (radiochemical conversion, %)
 
