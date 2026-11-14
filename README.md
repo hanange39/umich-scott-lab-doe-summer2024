@@ -15,7 +15,7 @@ Objective: Optimize a multi-variable reaction for high-throughput experimentatio
 
 | Variable | Code | Description | Range |
 | :--- | :---: | :--- | :---: |
-| Precursor loading | `Pre` | [units] | [low – high] |
+| Precursor loading | `Pre` | [$\mu$] | [low – high] |
 | Copper loading | `Cu` | [units] | [low – high] |
 | n-Butanol | `Bu` | % of solvent | [low – high] |
 | Pyridine loading | `Pyr` | [units] | [low – high] |
