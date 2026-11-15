@@ -1,4 +1,4 @@
-`# HTE Reaction Optimization: Design of Experiments & Response Surface Modeling
+# HTE Reaction Optimization: Design of Experiments & Response Surface Modeling
 
 Objective: Optimize a multi-variable reaction for high-throughput experimentation (HTE) by generating a face-centered Central Composite Design (CCD), fitting a second-order regression model to the experimental results, and visualizing the response surface to identify optimal conditions.
 
@@ -45,10 +45,10 @@ y = β₀ + Σ βᵢxᵢ + Σ βᵢᵢxᵢ² + Σ βᵢⱼxᵢxⱼ + ε
 
 ### Visual Evaluation
 #### 2D Contour Plot (n-Butanol volume vs. Pyridine volume)
-![Contour plot](images/contour_plot.png)
+![Contour plot](contour_plot.png)
  
 #### 3D Response Surface (Precursor volume vs. Cu volume)
-![3D response surface](images/surface_plot.png)
+![3D response surface](surface_plot.png)
 
 ## Quick Start
  
@@ -83,7 +83,8 @@ jupyter notebook
 ├── VolTestFDOPA.csv          # Input: variables and levels
 ├── DOE_table.csv             # Generated: CCD experiment table
 ├── DOE_table-2.csv           # Sample: design table with simulated RCC responses
-├── contour_plot.png and surface_plot.png                    # Saved plots
+├── contour_plot.png          # Saved plots
+    surface_plot.png          
 └── README.md
 ```
  
