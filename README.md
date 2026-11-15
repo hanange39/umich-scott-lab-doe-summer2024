@@ -3,7 +3,9 @@
 Objective: Optimize a multi-variable reaction for high-throughput experimentation (HTE) by generating a face-centered Central Composite Design (CCD), fitting a second-order regression model to the experimental results, and visualizing the response surface to identify optimal conditions.
 
 ## Project Context
-* **Application:** Copper-mediated radiofluorination of various molecules ([¹⁸F]FDOPA in this example)
+* **Research project:** Combining High-Throughput Radiochemical Experimentation with "Design of Experiments" to Accelerate the Radiosynthetic Optimization of Novel Radiopharmaceuticals
+* **Lab:** Scott Lab (Peter J. H. Scott), Department of Radiology, University of Michigan
+* **My role:** Designed a Python workflow for experimental design generation, regression modeling, and response surface visualization.
 * **Goal:** Replace one-factor-at-a-time screening with a DoE-driven approach that captures variable interactions in far fewer runs.
 * Demonstrated on a sample dataset; real experimental data will be added as it is collected.
 
