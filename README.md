@@ -26,7 +26,7 @@ Objective: Optimize a multi-variable reaction for high-throughput experimentatio
 
 ## Methods
 * **Design of Experiments:** Face-centered Central Composite Design (`face='ccf'`) generated with [`doepy`](https://github.com/tirthajyoti/doepy). A CCD combines factorial, axial, and center points, allowing curvature to be estimated with far fewer runs than a full factorial design. The face-centered variant places axial points on the faces of the design space, so every run stays within the specified ranges (the default circumscribed design produces out-of-range values such as negative volumes).
-* **Model:** Second-order polynomial multiple linear regression (main effects, quadratic terms, and two-way interactions) fit with `scikit-learn` (`PolynomialFeatures` + `LinearRegression`), evaluated on a held-out 20% test split.
+* **Model:** Second-order polynomial multiple linear regression (main effects, quadratic terms, and two-way interactions) fit with `scikit-learn` (`PolynomialFeatures` + `LinearRegression`), evaluated on a 20% test split.
 * **Response surface:** Two variables are varied across their ranges while the others are held constant, and predicted RCC is shown as a 2D contour map and a 3D surface.
 
 The model takes the form:
