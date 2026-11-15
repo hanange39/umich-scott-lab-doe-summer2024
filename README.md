@@ -1,6 +1,6 @@
-# HTE Reaction Optimization: Design of Experiments & Response Surface Modeling
+`# HTE Reaction Optimization: Design of Experiments & Response Surface Modeling
 
-Objective: Optimize a multi-variable reaction for high-throughput experimentation (HTE) by generating a Central Composite Design (CCD), fitting a second-order regression model to the experimental results, and visualizing the response surface to identify optimal conditions.
+Objective: Optimize a multi-variable reaction for high-throughput experimentation (HTE) by generating a face-centered Central Composite Design (CCD), fitting a second-order regression model to the experimental results, and visualizing the response surface to identify optimal conditions.
 
 ## Project Context
 * **Application:** Copper-mediated radiofluorination of various molecules ([¹⁸F]FDOPA in this example)
@@ -23,8 +23,8 @@ Objective: Optimize a multi-variable reaction for high-throughput experimentatio
 **Response:** `RCC` (radiochemical conversion, %)
 
 ## Methods
-* **Design of Experiments:** Central Composite Design generated with [`doepy`](https://github.com/tirthajyoti/doepy). A CCD combines factorial, axial, and center points, which allows curvature to be estimated with far fewer runs than a full factorial design.
-* **Model:** Second-order polynomial multiple linear regression (main effects, quadratic terms, and two-way interactions) fit with `scikit-learn`; `statsmodels` is used for the OLS summary and significance testing.
+* **Design of Experiments:** Face-centered Central Composite Design (`face='ccf'`) generated with [`doepy`](https://github.com/tirthajyoti/doepy). A CCD combines factorial, axial, and center points, allowing curvature to be estimated with far fewer runs than a full factorial design. The face-centered variant places axial points on the faces of the design space, so every run stays within the specified ranges (the default circumscribed design produces out-of-range values such as negative volumes).
+* **Model:** Second-order polynomial multiple linear regression (main effects, quadratic terms, and two-way interactions) fit with `scikit-learn` (`PolynomialFeatures` + `LinearRegression`), evaluated on a held-out 20% test split.
 * **Response surface:** Two variables are varied across their ranges while the others are held constant, and predicted RCC is shown as a 2D contour map and a 3D surface.
 
 The model takes the form:
@@ -40,69 +40,62 @@ y = β₀ + Σ βᵢxᵢ + Σ βᵢᵢxᵢ² + Σ βᵢⱼxᵢxⱼ + ε
 ### Model Performance
 | Metric | Value |
 | :--- | :---: |
-| R² | `[TBD]` |
-| Mean Squared Error | `[TBD]` |
-| Adjusted R² (OLS) | `[TBD]` |
+| R² (test set) | `0.9547` |
+| Mean Squared Error (test set) | `10.80` |
 
 ### Visual Evaluation
-#### 2D Contour Plot (Pyridine loading vs. % n-Butanol)
+#### 2D Contour Plot (n-Butanol volume vs. Pyridine volume)
 ![Contour plot](images/contour_plot.png)
-
-#### 3D Response Surface (Precursor loading vs. Cu loading)
+ 
+#### 3D Response Surface (Precursor volume vs. Cu volume)
 ![3D response surface](images/surface_plot.png)
 
-### Key Findings
-* [e.g., Optimal conditions identified at ...]
-* [e.g., Significant interaction between Cu and pyridine loading]
-* [e.g., Predicted RCC improved from X% to Y%]
-
 ## Quick Start
-
+ 
 ### Prerequisites
-* **Python 3.x**
-* **Jupyter Notebook** or **JupyterLab** *(or Google Colab / VS Code)*.
-
+* **Python 3.10+**
+* **Jupyter Notebook** or **JupyterLab** *(or Google Colab / VS Code)*
 ### Running the Project
 1. Clone this repository:
-   ```bash
-   git clone https://github.com/<your-username>/<repo-name>.git
-   ```
+```bash
+git clone https://github.com/hanange39/umich-scott-lab-doe-summer2024.git
+```
 2. Navigate to the folder:
-   ```bash
-   cd <repo-name>
-   ```
-3. Install any required libraries:
-   ```bash
-   pip install doepy pandas numpy statsmodels scikit-learn matplotlib jupyter pyDOE2 diversipy
-   ```
+```bash
+cd umich-scott-lab-doe-summer2024
+```
+3. Install the required libraries:
+```bash
+pip install doepy pydoe2 diversipy pandas numpy scikit-learn matplotlib jupyter
+```
 4. Enter your variables and their low/high levels in `VolTestFDOPA.csv`.
 5. Launch the Jupyter Notebook environment:
-   ```bash
-   jupyter notebook
-   ```
-6. Run the first cell to generate `DOE_table.csv`, the list of conditions to run.
+```bash
+jupyter notebook
+```
+6. Run the first cells to generate `DOE_table.csv`, the list of conditions to run.
 7. Run the experiments and record the measured `RCC` for each row of the design table.
 8. Update the data file name in the modeling cell (currently `DOE_table-2.csv`, the sample file) to point to your completed table, then run the remaining cells to fit the model and generate the plots.
-
 ## Project Structure
 ```
 .
-├── <notebook-name>.ipynb     # Design generation, model fitting, and plotting
+├── doe-test.ipynb            # Design generation, model fitting, and plotting
 ├── VolTestFDOPA.csv          # Input: variables and levels
 ├── DOE_table.csv             # Generated: CCD experiment table
-├── DOE_table-2.csv           # Sample: placeholder design table with simulated responses
-├── images/                   # Saved plots
+├── DOE_table-2.csv           # Sample: design table with simulated RCC responses
+├── contour_plot.png and surface_plot.png                    # Saved plots
 └── README.md
 ```
-
+ 
 ## Limitations & Future Work
-* Results are currently based on sample data and need to be regenerated with real experimental measurements.
+* Results are currently based on simulated data and need to be regenerated with real experimental measurements.
 * With a small CCD dataset, a single train/test split is unreliable. Cross-validation or confirmation runs at predicted optima would be more informative.
-* Planned: numerical optimization (e.g., `scipy.optimize`) to locate the predicted optimum automatically, and configurable fixed-variable values in the contour plots.
 
 ## Built With
 * **Python 3**
 * **Jupyter Notebook**
-* **DoE:** `doepy`
-* **Modeling:** `scikit-learn`, `statsmodels`
+* **DoE:** `doepy`, `pyDOE2`
+* **Modeling:** `scikit-learn`
 * **Data & Visualization:** `pandas`, `numpy`, `matplotlib`
+
+ 
