@@ -84,7 +84,7 @@ jupyter notebook
 ├── DOE_table.csv             # Generated: CCD experiment table
 ├── DOE_table-2.csv           # Sample: design table with simulated RCC responses
 ├── contour_plot.png          # Saved plots
-    surface_plot.png          
+├── surface_plot.png          
 └── README.md
 ```
  
@@ -98,5 +98,3 @@ jupyter notebook
 * **DoE:** `doepy`, `pyDOE2`
 * **Modeling:** `scikit-learn`
 * **Data & Visualization:** `pandas`, `numpy`, `matplotlib`
-
- 
